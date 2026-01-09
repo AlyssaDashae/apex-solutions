@@ -1,0 +1,217 @@
+<style>
+:root {
+--cream: #f8f7f3;
+--charcoal: #1f1f1f;
+--sage: #8fa99b;
+--sage-dark: #6f8f80;
+}
+
+body {
+margin: 0;
+font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+background: var(--cream);
+color: var(--charcoal);
+}
+
+.container {
+max-width: 1200px;
+margin: auto;
+padding: 100px 20px;
+}
+
+h1, h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+h1 span {
+background: linear-gradient(90deg, var(--sage), var(--sage-dark));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+p.subtitle {
+text-align: center;
+max-width: 800px;
+margin: auto;
+opacity: 0.85;
+margin-bottom: 70px;
+line-height: 1.6;
+}
+
+/* PRICING GRID */
+.pricing-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 35px;
+}
+
+.plan {
+background: white;
+padding: 45px;
+border-radius: 26px;
+box-shadow: 0 18px 50px rgba(0,0,0,0.06);
+position: relative;
+}
+
+.plan.featured {
+border: 2px solid var(--sage);
+transform: translateY(-10px);
+}
+
+.plan h3 {
+font-size: 1.6rem;
+margin-bottom: 10px;
+}
+
+.price {
+font-size: 2.2rem;
+font-weight: 700;
+margin: 15px 0;
+}
+
+.price span {
+font-size: 1rem;
+font-weight: 400;
+opacity: 0.7;
+}
+
+.plan ul {
+margin-top: 25px;
+padding-left: 18px;
+line-height: 1.9;
+}
+
+.btn {
+display: inline-block;
+margin-top: 35px;
+background: var(--sage);
+color: white;
+padding: 14px 34px;
+border-radius: 40px;
+text-decoration: none;
+font-weight: 500;
+transition: 0.3s ease;
+}
+
+.btn:hover {
+background: var(--sage-dark);
+transform: translateY(-2px);
+}
+
+/* MONTHLY PLANS */
+.monthly {
+margin-top: 140px;
+}
+
+/* NOTE */
+.note {
+text-align: center;
+margin-top: 80px;
+font-size: 0.95rem;
+opacity: 0.75;
+}
+</style>
+
+<div class="container">
+<h1>Website Pricing<br><span>For Bahamas Businesses</span></h1>
+<p class="subtitle">
+Transparent pricing for professional website design, SEO,
+and website management services in The Bahamas.
+</p>
+
+<!-- ONE-TIME SETUP -->
+<h2>Website Design & Setup</h2>
+
+<div class="pricing-grid">
+<div class="plan">
+<h3>Starter Website</h3>
+<p>Perfect for new businesses & solo entrepreneurs</p>
+<div class="price">$750 <span>one-time</span></div>
+<ul>
+<li>Up to 3 pages</li>
+<li>Mobile-responsive design</li>
+<li>Basic SEO (Bahamas-focused)</li>
+<li>Google indexing setup</li>
+<li>Client editing access</li>
+</ul>
+<a href="/contact" class="btn">Get Started</a>
+</div>
+
+<div class="plan featured">
+<h3>Business Website</h3>
+<p>Ideal for growing Bahamas-based businesses</p>
+<div class="price">$1,500 <span>one-time</span></div>
+<ul>
+<li>Up to 6 pages</li>
+<li>Custom branding & layout</li>
+<li>Advanced SEO for The Bahamas</li>
+<li>Contact form integration</li>
+<li>Training & walkthrough</li>
+</ul>
+<a href="/contact" class="btn">Most Popular</a>
+</div>
+
+<div class="plan">
+<h3>Authority Website</h3>
+<p>For established brands & service providers</p>
+<div class="price">$2,500+ <span>one-time</span></div>
+<ul>
+<li>Multi-page custom website</li>
+<li>SEO content strategy</li>
+<li>Platform flexibility (Shopify, WordPress, Wix)</li>
+<li>Performance optimization</li>
+<li>Priority support</li>
+</ul>
+<a href="/contact" class="btn">Request Quote</a>
+</div>
+</div>
+
+<!-- MONTHLY PLANS -->
+<div class="monthly">
+<h2>Monthly Website Management</h2>
+<p class="subtitle">
+Ongoing website management & SEO services for businesses
+across Nassau and The Bahamas.
+</p>
+
+<div class="pricing-grid">
+<div class="plan">
+<h3>Basic Care</h3>
+<div class="price">$150 <span>/month</span></div>
+<ul>
+<li>Content updates (up to 2/month)</li>
+<li>Website monitoring</li>
+<li>Basic SEO maintenance</li>
+<li>Email support</li>
+</ul>
+</div>
+
+<div class="plan featured">
+<h3>Growth Management</h3>
+<div class="price">$300 <span>/month</span></div>
+<ul>
+<li>Unlimited content updates</li>
+<li>SEO improvements (Bahamas keywords)</li>
+<li>Shopify, WordPress & Wix support</li>
+<li>Performance optimization</li>
+</ul>
+</div>
+
+<div class="plan">
+<h3>Full Service</h3>
+<div class="price">$500+ <span>/month</span></div
+<ul>
+<li>Hands-off website management</li>
+<li>Advanced SEO & reporting</li>
+<li>Priority support</li>
+<li>Ongoing strategy improvements</li>
+</ul>
+</div>
+</div>
+
+<div class="note">
+*All pricing is tailored to the needs of businesses operating in The Bahamas.
+</div>
+</div>
+</div>
