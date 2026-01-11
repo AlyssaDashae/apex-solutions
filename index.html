@@ -3,33 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Services | Premium Web Design Nassau</title>
+<title>Apex Services | Premium Web Design & Free Hosting Nassau</title>
+<meta name="description" content="Nassau's premier web design agency. We offer free GitHub hosting, SEO marketing, and custom management for Shopify, Wix, and WordPress.">
+
 <style>
+/* --- CSS STYLING --- */
 :root {
---bg-dark: #02060a;
+--bg-dark: #050a10;
 --accent-cyan: #00f2ff;
 --glass: rgba(0, 242, 255, 0.05);
---text-glow: 0 0 10px rgba(0, 242, 255, 0.5);
+--text-main: #ffffff;
+--text-secondary: #8892b0;
 }
 
-body, html {
+body {
 margin: 0;
-padding: 0;
+font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 background-color: var(--bg-dark);
-color: white;
-font-family: 'Inter', 'Segoe UI', sans-serif;
+color: var(--text-main);
+scroll-behavior: smooth;
 overflow-x: hidden;
 }
 
 /* --- STARRY NETWORK BACKGROUND --- */
 #hero-canvas {
-position: absolute;
+position: fixed;
 top: 0;
 left: 0;
 width: 100%;
-height: 100vh;
+height: 100%;
 z-index: -1;
-background: radial-gradient(circle at center, #0a1f33 0%, #02060a 100%);
+background: radial-gradient(circle at center, #0a1f33 0%, #050a10 100%);
 }
 
 /* Navigation */
@@ -38,100 +42,150 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 20px 5%;
+background: rgba(5, 10, 16, 0.8);
+backdrop-filter: blur(10px);
 position: fixed;
 width: 90%;
 top: 0;
 z-index: 1000;
-background: rgba(2, 6, 10, 0.8);
-backdrop-filter: blur(10px);
+border-bottom: 1px solid rgba(0, 242, 255, 0.1);
 }
 
-.logo { font-weight: 800; font-size: 1.4rem; color: var(--accent-cyan); text-shadow: var(--text-glow); }
-.nav-links { display: flex; list-style: none; align-items: center; gap: 25px; }
-.nav-links a { text-decoration: none; color: #ccc; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+.logo { font-weight: bold; font-size: 1.5rem; letter-spacing: 2px; color: var(--accent-cyan); text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
 
-/* Buttons & Sparkle */
+.nav-links { display: flex; list-style: none; align-items: center; margin: 0; }
+.nav-links li { margin-left: 30px; }
+.nav-links a { text-decoration: none; color: white; transition: 0.3s; font-size: 0.9rem; text-transform: uppercase; }
+.nav-links a:hover { color: var(--accent-cyan); }
+
+/* Cart Icon */
+.cart-wrapper { position: relative; cursor: pointer; display: flex; align-items: center; }
+.cart-icon { width: 24px; height: 24px; stroke: var(--accent-cyan); fill: none; stroke-width: 2; filter: drop-shadow(0 0 5px var(--accent-cyan)); }
+#cart-count {
+position: absolute; top: -10px; right: -10px;
+background: #ff0055; color: white; border-radius: 50%;
+padding: 2px 6px; font-size: 10px; font-weight: bold;
+}
+
+/* Sparkle Button */
 .sparkle-btn {
-background: transparent;
-border: 1px solid var(--accent-cyan);
-color: var(--accent-cyan);
-padding: 10px 20px;
+background: linear-gradient(90deg, #00c6ff, #0072ff);
+border: none;
+padding: 12px 25px;
+color: white;
+font-weight: bold;
+border-radius: 5px;
 cursor: pointer;
 text-transform: uppercase;
-font-weight: bold;
-transition: 0.3s;
-position: relative;
-box-shadow: 0 0 5px var(--accent-cyan);
+transition: 0.4s;
+box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
 }
 
 .sparkle-btn:hover {
-background: var(--accent-cyan);
-color: black;
-box-shadow: 0 0 20px var(--accent-cyan);
+animation: sparkle-anim 1.5s infinite;
+transform: scale(1.05);
 }
 
-/* Hero */
+@keyframes sparkle-anim {
+0% { box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px #fff; }
+50% { box-shadow: 0 0 25px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+100% { box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px #fff; }
+}
+
+/* Hero Section */
 .hero {
-height: 100vh;
+height: 90vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
-padding: 0 10%;
-position: relative;
+align-items: center;
+text-align: center;
+padding-top: 80px;
 }
 
-.hero h1 { font-size: 3.5rem; margin: 0; max-width: 700px; line-height: 1.1; }
-.hero p { color: #8892b0; font-size: 1.1rem; margin: 20px 0; }
+.hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; }
+.hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 30px; }
 
 /* WHAT WE OFFER - ICON GRID */
-.what-offer { padding: 60px 10%; text-align: center; }
+.offer-section { padding: 60px 10%; text-align: center; }
+.offer-header { text-align: left; font-size: 0.9rem; color: var(--accent-cyan); letter-spacing: 3px; margin-bottom: 40px; }
 .offer-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 gap: 20px;
-margin-top: 40px;
 }
-
 .offer-item {
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 10px;
+gap: 15px;
 }
-
 .icon-circle {
-width: 60px;
-height: 60px;
+width: 70px;
+height: 70px;
 border: 1px solid var(--accent-cyan);
 border-radius: 50%;
 display: flex;
 justify-content: center;
 align-items: center;
-box-shadow: inset 0 0 10px var(--glass);
+font-size: 1.5rem;
+background: var(--glass);
+box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
 color: var(--accent-cyan);
 }
+.offer-item span { font-size: 0.75rem; letter-spacing: 1px; font-weight: bold; }
 
-/* CAROUSEL */
-.template-section { padding: 40px 10%; }
-.carousel-wrapper { position: relative; display: flex; align-items: center; gap: 15px; }
+/* Carousel */
+.template-section { padding: 80px 5%; text-align: center; }
+.template-section h2 { text-align: left; margin-left: 5%; }
+.template-section p.sub { text-align: left; margin-left: 5%; color: var(--text-secondary); margin-bottom: 30px; }
+
+.carousel-wrapper { position: relative; display: flex; align-items: center; max-width: 1200px; margin: 0 auto; }
+
 .carousel-container {
 display: flex;
-overflow-x: auto;
-gap: 20px;
+overflow-x: hidden;
 scroll-behavior: smooth;
-padding-bottom: 20px;
+gap: 20px;
+padding: 20px 0;
 }
-.carousel-container::-webkit-scrollbar { display: none; }
 
 .template-card {
-min-width: 280px;
+min-width: 320px;
 background: var(--glass);
 border: 1px solid rgba(0, 242, 255, 0.1);
-border-radius: 5px;
-padding: 15px;
+border-radius: 10px;
+padding: 20px;
+text-align: left;
+backdrop-filter: blur(5px);
 }
 
-.temp-img { width: 100%; height: 160px; background: #112240; border-radius: 3px; }
+.temp-img { width: 100%; height: 180px; background: #112240; border-radius: 5px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
+
+.arrow-btn {
+background: rgba(0, 242, 255, 0.1);
+border: 1px solid var(--accent-cyan);
+color: var(--accent-cyan);
+font-size: 1.5rem;
+width: 45px;
+height: 45px;
+border-radius: 50%;
+cursor: pointer;
+z-index: 10;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: 0.3s;
+}
+.arrow-btn:hover { background: var(--accent-cyan); color: black; box-shadow: 0 0 20px var(--accent-cyan); }
+
+/* FAQ */
+.faq { padding: 80px 10%; background: rgba(0,0,0,0.3); }
+.faq-item { margin-bottom: 25px; border-bottom: 1px solid #112240; padding-bottom: 15px; }
+.faq h4 { color: var(--accent-cyan); margin-bottom: 10px; }
+
+/* Footer */
+footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; font-size: 0.9rem; color: var(--text-secondary); }
 </style>
 </head>
 <body>
@@ -141,68 +195,103 @@ padding: 15px;
 <nav>
 <div class="logo">APEX SERVICES</div>
 <ul class="nav-links">
-<li><a href="#">Home</a></li>
-<li><a href="#">Templates</a></li>
-<li><a href="#">Contact Us</a></li>
-<li><button class="sparkle-btn">Client Portal</button></li>
+<li><a href="#home">Home</a></li>
+<li><a href="#templates">Templates</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#contact">Contact Us</a></li>
+<li>
+<div class="cart-wrapper">
+<svg class="cart-icon" viewBox="0 0 24 24"><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+<span id="cart-count">0</span>
+</div>
+</li>
+<li><a href="#" class="sparkle-btn" style="margin-left:20px; padding: 8px 15px;">Client Portal</a></li>
 </ul>
 </nav>
 
-<section class="hero">
-<h1>ELEVATING BAHAMIAN BUSINESSES ONLINE</h1>
+<section class="hero" id="home">
+<h1>Elevating Bahamian Businesses Online</h1>
 <p>Custom Designs. Free Hosting. Local Expertise.</p>
-<div style="display: flex; gap: 15px;">
-<button class="sparkle-btn" style="background: var(--accent-cyan); color: black;">View Pricing</button>
-<button class="sparkle-btn">Client Login</button>
+<div style="display: flex; gap: 20px;">
+<button class="sparkle-btn">View Pricing</button>
+<button class="sparkle-btn" style="background: transparent; border: 1px solid white;">Client Login</button>
 </div>
 </section>
 
-<section class="what-offer">
-<h2 style="text-align: left; font-size: 0.9rem; color: #8892b0; letter-spacing: 2px;">WHAT WE OFFER</h2>
+<section class="offer-section">
+<div class="offer-header">WHAT WE OFFER</div>
 <div class="offer-grid">
 <div class="offer-item">
 <div class="icon-circle">🌐</div>
-<span style="font-size: 0.7rem;">FREE GITHUB HOSTING</span>
+<span>FREE GITHUB HOSTING</span>
 </div>
 <div class="offer-item">
 <div class="icon-circle">🎨</div>
-<span style="font-size: 0.7rem;">TEMPLATE DESIGN</span>
+<span>TEMPLATE DESIGN</span>
 </div>
 <div class="offer-item">
 <div class="icon-circle">📈</div>
-<span style="font-size: 0.7rem;">SEO MARKETING</span>
+<span>SEO MARKETING</span>
 </div>
 <div class="offer-item">
 <div class="icon-circle">⚙️</div>
-<span style="font-size: 0.7rem;">SITE MANAGEMENT</span>
+<span>SITE MANAGEMENT</span>
+</div>
+<div class="offer-item">
+<div class="icon-circle">🛍️</div>
+<span>SHOP MANAGEMENT</span>
 </div>
 </div>
 </section>
 
-<section class="template-section">
-<h2 style="font-size: 1.2rem; margin-bottom: 5px;">SELECT YOUR STARTING POINT</h2>
-<p style="color: #8892b0; font-size: 0.9rem; margin-bottom: 25px;">Premium templates designed for Bahamian excellence.</p>
-
+<section id="templates" class="template-section">
+<h2>SELECT YOUR STARTING POINT</h2>
+<p class="sub">Premium templates designed for Bahamian excellence.</p>
 <div class="carousel-wrapper">
+<button class="arrow-btn" onclick="moveSlide(-1)">&#10094;</button>
 <div class="carousel-container" id="carousel">
 <div class="template-card">
 <div class="temp-img"></div>
-<h4 style="margin: 15px 0 5px 0;">The Atlantis Tech</h4>
-<button class="sparkle-btn" style="width: 100%; font-size: 0.7rem;">Add to Cart</button>
+<h3>Island Modern</h3>
+<p>Perfect for real estate or luxury villas.</p>
+<p><strong>$199</strong></p>
+<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
 </div>
 <div class="template-card">
 <div class="temp-img"></div>
-<h4 style="margin: 15px 0 5px 0;">Nassau Modern Biz</h4>
-<button class="sparkle-btn" style="width: 100%; font-size: 0.7rem;">Add to Cart</button>
+<h3>Nassau Biz</h3>
+<p>Clean corporate design for local services.</p>
+<p><strong>$149</strong></p>
+<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
 </div>
 <div class="template-card">
 <div class="temp-img"></div>
-<h4 style="margin: 15px 0 5px 0;">Paradise Real Estate</h4>
-<button class="sparkle-btn" style="width: 100%; font-size: 0.7rem;">Add to Cart</button>
+<h3>Paradise Realty</h3>
+<p>Showcase properties with high-impact visuals.</p>
+<p><strong>$249</strong></p>
+<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
 </div>
 </div>
+<button class="arrow-btn" onclick="moveSlide(1)">&#10095;</button>
 </div>
 </section>
+
+<section class="faq">
+<h2>FAQ</h2>
+<div class="faq-item">
+<h4>Can I really host for free?</h4>
+<p>Yes. By utilizing GitHub Pages, we eliminate hosting costs while providing world-class security.</p>
+</div>
+<div class="faq-item">
+<h4>Can I update my own products?</h4>
+<p>Absolutely. Our client portal allows you to change prices, stock levels, and product descriptions instantly.</p>
+</div>
+</section>
+
+<footer>
+<p>Location: Nassau, Bahamas</p>
+<p>Website Designed by <strong>Apex Services</strong></p>
+</footer>
 
 <script>
 // --- STAR NETWORK ANIMATION ---
@@ -216,9 +305,9 @@ class Particle {
 constructor() {
 this.x = Math.random() * canvas.width;
 this.y = Math.random() * canvas.height;
-this.size = Math.random() * 2;
-this.speedX = Math.random() * 0.5 - 0.25;
-this.speedY = Math.random() * 0.5 - 0.25;
+this.size = Math.random() * 1.5;
+this.speedX = Math.random() * 0.4 - 0.2;
+this.speedY = Math.random() * 0.4 - 0.2;
 }
 update() {
 this.x += this.speedX;
@@ -237,7 +326,8 @@ ctx.fill();
 }
 
 function init() {
-for (let i = 0; i < 80; i++) particles.push(new Particle());
+particles = [];
+for (let i = 0; i < 100; i++) particles.push(new Particle());
 }
 
 function animate() {
@@ -246,10 +336,45 @@ particles.forEach(p => {
 p.update();
 p.draw();
 });
+// Draw connecting lines
+for (let i = 0; i < particles.length; i++) {
+for (let j = i; j < particles.length; j++) {
+let dx = particles[i].x - particles[j].x;
+let dy = particles[i].y - particles[j].y;
+let distance = Math.sqrt(dx * dx + dy * dy);
+if (distance < 100) {
+ctx.strokeStyle = 'rgba(0, 242, 255, 0.1)';
+ctx.lineWidth = 1;
+ctx.beginPath();
+ctx.moveTo(particles[i].x, particles[i].y);
+ctx.lineTo(particles[j].x, particles[j].y);
+ctx.stroke();
+}
+}
+}
 requestAnimationFrame(animate);
 }
 init();
 animate();
+
+window.addEventListener('resize', () => {
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+init();
+});
+
+// Carousel Logic
+function moveSlide(direction) {
+const container = document.getElementById('carousel');
+container.scrollBy({ left: direction * 340, behavior: 'smooth' });
+}
+
+// Cart Logic
+let count = 0;
+function addToCart() {
+count++;
+document.getElementById('cart-count').innerText = count;
+}
 </script>
 </body>
 </html>
