@@ -294,84 +294,60 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 </footer>
 
 <script>
-// --- FIXED BAHAMAS MAP NETWORK ANIMATION ---
-const canvas = document.getElementById('hero-canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-// Normalized Bahamas Geographic Zones
+// --- NEW BAHAMAS NETWORK ---
 const islands = [
-{x: 0.70, y: 0.18, r: 60}, // Grand Bahama
-{x: 0.84, y: 0.22, r: 50}, // Abaco
-{x: 0.64, y: 0.55, r: 85}, // Andros
-{x: 0.75, y: 0.50, r: 25}, // New Providence (Nassau)
-{x: 0.84, y: 0.52, r: 50}, // Eleuthera
-{x: 0.81, y: 0.72, r: 60}, // Exumas
-{x: 0.90, y: 0.82, r: 40} // Long Island
+{x: 0.72, y: 0.18, r: 55}, // Grand Bahama
+{x: 0.85, y: 0.22, r: 50}, // Abaco
+{x: 0.64, y: 0.55, r: 80}, // Andros
+{x: 0.75, y: 0.50, r: 20}, // Nassau
+{x: 0.84, y: 0.52, r: 45}, // Eleuthera
+{x: 0.81, y: 0.72, r: 55}, // Exumas
+{x: 0.90, y: 0.85, r: 40} // Long Island
 ];
 
 class Particle {
 constructor(island) {
 this.baseX = island.x * canvas.width;
 this.baseY = island.y * canvas.height;
-this.x = this.baseX + (Math.random() - 0.5) * island.r * 2.2;
-this.y = this.baseY + (Math.random() - 0.5) * island.r * 2.2;
+this.x = this.baseX + (Math.random() - 0.5) * island.r * 2;
+this.y = this.baseY + (Math.random() - 0.5) * island.r * 2;
 this.vx = (Math.random() - 0.5) * 0.3;
 this.vy = (Math.random() - 0.5) * 0.3;
 }
 update() {
-this.x += this.vx;
-this.y += this.vy;
-// Subtle drift constraint
-if (Math.abs(this.x - this.baseX) > 10) this.vx *= -1;
-if (Math.abs(this.y - this.baseY) > 10) this.vy *= -1;
+this.x += this.vx; this.y += this.vy;
+if (Math.abs(this.x - this.baseX) > 15) this.vx *= -1;
+if (Math.abs(this.y - this.baseY) > 15) this.vy *= -1;
 }
 draw() {
 ctx.fillStyle = '#00f2ff';
-ctx.beginPath();
-ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
-ctx.fill();
+ctx.beginPath(); ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2); ctx.fill();
 }
 }
 
 function init() {
 particles = [];
 islands.forEach(isl => {
-for (let i = 0; i < 40; i++) {
-particles.push(new Particle(isl));
-}
+for (let i = 0; i < 40; i++) particles.push(new Particle(isl));
 });
 }
 
 function animate() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
-particles.forEach(p => {
-p.update();
-p.draw();
-});
-
+particles.forEach(p => { p.update(); p.draw(); });
 for (let i = 0; i < particles.length; i++) {
 for (let j = i; j < particles.length; j++) {
-let dx = particles[i].x - particles[j].x;
-let dy = particles[i].y - particles[j].y;
-let distance = Math.sqrt(dx * dx + dy * dy);
-if (distance < 70) {
-ctx.strokeStyle = `rgba(0, 242, 255, ${0.2 * (1 - distance / 70)})`;
+let d = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+if (d < 70) {
+ctx.strokeStyle = `rgba(0, 242, 255, ${0.15 * (1 - d / 70)})`;
 ctx.lineWidth = 0.8;
-ctx.beginPath();
-ctx.moveTo(particles[i].x, particles[i].y);
-ctx.lineTo(particles[j].x, particles[j].y);
-ctx.stroke();
+ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
+ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
 }
 }
 }
 requestAnimationFrame(animate);
 }
-init();
-animate();
-
 window.addEventListener('resize', () => {
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
