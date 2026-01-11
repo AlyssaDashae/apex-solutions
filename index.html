@@ -11,9 +11,19 @@
 :root {
 --bg-dark: #050a10;
 --accent-cyan: #00f2ff;
---glass: rgba(0, 242, 255, 0.05);
+--glass: rgba(255, 255, 255, 0.05);
 --text-main: #ffffff;
---text-secondary: #8892b0;
+}
+
+/* THE CHOICE 2 BACKGROUND */
+#bahamas-network {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+background: radial-gradient(circle at 70% 30%, #0a1f33 0%, #050a10 100%);
 }
 
 body {
@@ -22,18 +32,6 @@ font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 background-color: var(--bg-dark);
 color: var(--text-main);
 scroll-behavior: smooth;
-overflow-x: hidden;
-}
-
-/* THE CHOICE 2 BACKGROUND CANVAS */
-#network-canvas {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: -1;
-background: radial-gradient(circle at center, #0a1f33 0%, #050a10 100%);
 }
 
 /* Navigation */
@@ -42,8 +40,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 20px 5%;
-background: rgba(5, 10, 16, 0.8);
-backdrop-filter: blur(10px);
+background: rgba(5, 10, 16, 0.95);
 position: fixed;
 width: 90%;
 top: 0;
@@ -51,16 +48,16 @@ z-index: 1000;
 border-bottom: 1px solid rgba(0, 242, 255, 0.1);
 }
 
-.logo { font-weight: bold; font-size: 1.5rem; letter-spacing: 2px; color: var(--accent-cyan); text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
+.logo { font-weight: bold; font-size: 1.5rem; letter-spacing: 2px; color: var(--accent-cyan); }
 
-.nav-links { display: flex; list-style: none; align-items: center; margin: 0; }
+.nav-links { display: flex; list-style: none; align-items: center; }
 .nav-links li { margin-left: 30px; }
-.nav-links a { text-decoration: none; color: white; transition: 0.3s; font-size: 0.9rem; text-transform: uppercase; }
+.nav-links a { text-decoration: none; color: white; transition: 0.3s; font-size: 0.9rem; }
 .nav-links a:hover { color: var(--accent-cyan); }
 
 /* Cart Icon */
 .cart-wrapper { position: relative; cursor: pointer; display: flex; align-items: center; }
-.cart-icon { width: 24px; height: 24px; stroke: var(--accent-cyan); fill: none; stroke-width: 2; filter: drop-shadow(0 0 5px var(--accent-cyan)); }
+.cart-icon { width: 24px; height: 24px; stroke: var(--accent-cyan); fill: none; stroke-width: 2; }
 #cart-count {
 position: absolute; top: -10px; right: -10px;
 background: #ff0055; color: white; border-radius: 50%;
@@ -92,55 +89,23 @@ transform: scale(1.05);
 100% { box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px #fff; }
 }
 
-/* Hero Section - Aligned Left like Screenshot */
+/* Hero Section */
 .hero {
 height: 90vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
-align-items: flex-start;
-padding-left: 10%;
+align-items: center;
+text-align: center;
+background: transparent; /* Changed to show map */
 padding-top: 80px;
 }
 
-.hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; text-align: left; line-height: 1.1; }
-.hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 30px; }
-
-/* WHAT WE OFFER - ICON GRID FROM SCREENSHOT */
-.offer-section { padding: 60px 10%; }
-.offer-header { text-align: left; font-size: 0.9rem; color: var(--accent-cyan); letter-spacing: 3px; margin-bottom: 40px; font-weight: bold; }
-.offer-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-gap: 20px;
-}
-.offer-item {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 15px;
-text-align: center;
-}
-.icon-circle {
-width: 70px;
-height: 70px;
-border: 1px solid var(--accent-cyan);
-border-radius: 50%;
-display: flex;
-justify-content: center;
-align-items: center;
-font-size: 1.8rem;
-background: var(--glass);
-box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
-color: var(--accent-cyan);
-}
-.offer-item span { font-size: 0.7rem; letter-spacing: 1px; font-weight: bold; text-transform: uppercase; }
+.hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
+.hero p { font-size: 1.2rem; color: #8892b0; margin-bottom: 30px; }
 
 /* Carousel */
-.template-section { padding: 80px 5%; }
-.template-section h2 { text-align: left; margin-left: 5%; text-transform: uppercase; font-size: 1.5rem; }
-.template-section p.sub { text-align: left; margin-left: 5%; color: var(--text-secondary); margin-bottom: 30px; }
-
+.template-section { padding: 100px 5%; text-align: center; }
 .carousel-wrapper { position: relative; display: flex; align-items: center; max-width: 1200px; margin: 0 auto; }
 
 .carousel-container {
@@ -155,43 +120,42 @@ padding: 20px 0;
 min-width: 320px;
 background: var(--glass);
 border: 1px solid rgba(0, 242, 255, 0.1);
-border-radius: 10px;
+border-radius: 15px;
 padding: 20px;
 text-align: left;
 backdrop-filter: blur(5px);
 }
 
-.temp-img { width: 100%; height: 180px; background: #112240; border-radius: 5px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
+.temp-img { width: 100%; height: 180px; background: #112240; border-radius: 10px; margin-bottom: 15px; }
 
 .arrow-btn {
-background: rgba(0, 242, 255, 0.1);
+background: var(--glass);
 border: 1px solid var(--accent-cyan);
 color: var(--accent-cyan);
-font-size: 1.5rem;
-width: 45px;
-height: 45px;
+font-size: 2rem;
+width: 50px;
+height: 50px;
 border-radius: 50%;
 cursor: pointer;
 z-index: 10;
-display: flex;
-justify-content: center;
-align-items: center;
-transition: 0.3s;
 }
-.arrow-btn:hover { background: var(--accent-cyan); color: black; box-shadow: 0 0 20px var(--accent-cyan); }
+
+/* Offers */
+.offers { padding: 80px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.offer-card { padding: 30px; border: 1px solid rgba(0, 242, 255, 0.1); background: var(--glass); border-radius: 10px; backdrop-filter: blur(5px); }
 
 /* FAQ */
-.faq { padding: 80px 10%; background: rgba(0,0,0,0.3); }
+.faq { padding: 80px 5%; background: rgba(0,0,0,0.2); }
 .faq-item { margin-bottom: 25px; border-bottom: 1px solid #112240; padding-bottom: 15px; }
 .faq h4 { color: var(--accent-cyan); margin-bottom: 10px; }
 
 /* Footer */
-footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; font-size: 0.9rem; color: var(--text-secondary); }
+footer { padding: 40px; text-align: center; border-top: 1px solid #112240; font-size: 0.9rem; color: #8892b0; }
 </style>
 </head>
 <body>
 
-<canvas id="network-canvas"></canvas>
+<canvas id="bahamas-network"></canvas>
 
 <nav>
 <div class="logo">APEX SERVICES</div>
@@ -206,52 +170,18 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 <span id="cart-count">0</span>
 </div>
 </li>
-<li><a href="#" class="sparkle-btn" style="margin-left:20px; padding: 8px 15px;">Client Portal</a></li>
+<li><a href="#" class="sparkle-btn" style="margin-left:20px; padding: 8px 15px;">Login</a></li>
 </ul>
 </nav>
 
 <section class="hero" id="home">
-<h1>Elevating Bahamian <br>Businesses Online</h1>
-<p>Custom Designs. Free Hosting. Local Expertise.</p>
-<div style="display: flex; gap: 20px;">
-<button class="sparkle-btn">View Pricing</button>
-<button class="sparkle-btn" style="background: transparent; border: 1px solid white; box-shadow: none;">Client Login</button>
-</div>
-</section>
-
-<section class="offer-section">
-<div class="offer-header">WHAT WE OFFER</div>
-<div class="offer-grid">
-<div class="offer-item">
-<div class="icon-circle">🌐</div>
-<span>FREE GITHUB HOSTING</span>
-</div>
-<div class="offer-item">
-<div class="icon-circle">🎨</div>
-<span>TEMPLATE DESIGN</span>
-</div>
-<div class="offer-item">
-<div class="icon-circle">📈</div>
-<span>SEO MARKETING</span>
-</div>
-<div class="offer-item">
-<div class="icon-circle">⚙️</div>
-<span>SITE MANAGEMENT</span>
-</div>
-<div class="offer-item">
-<div class="icon-circle">🛍️</div>
-<span>SHOP MANAGEMENT</span>
-</div>
-<div class="offer-item">
-<div class="icon-circle">🛡️</div>
-<span>PRIORITY SUPPORT</span>
-</div>
-</div>
+<h1>Nassau’s Digital Apex</h1>
+<p>Expert SEO Marketing & Free Website Hosting for Local Businesses.</p>
+<button class="sparkle-btn">Build Your Future</button>
 </section>
 
 <section id="templates" class="template-section">
-<h2>SELECT YOUR STARTING POINT</h2>
-<p class="sub">Premium templates designed for Bahamian excellence.</p>
+<h2>Premium Templates</h2>
 <div class="carousel-wrapper">
 <button class="arrow-btn" onclick="moveSlide(-1)">&#10094;</button>
 <div class="carousel-container" id="carousel">
@@ -260,31 +190,32 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 <h3>Island Modern</h3>
 <p>Perfect for real estate or luxury villas.</p>
 <p><strong>$199</strong></p>
-<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
+<button class="sparkle-btn" onclick="addToCart()">Add to Cart</button>
 </div>
 <div class="template-card">
 <div class="temp-img"></div>
 <h3>Nassau Biz</h3>
 <p>Clean corporate design for local services.</p>
 <p><strong>$149</strong></p>
-<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
-</div>
-<div class="template-card">
-<div class="temp-img"></div>
-<h3>Paradise Realty</h3>
-<p>Showcase properties with high-impact visuals.</p>
-<p><strong>$249</strong></p>
-<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
-</div>
-<div class="template-card">
-<div class="temp-img"></div>
-<h3>Harbour Side</h3>
-<p>Minimalist design for boutiques and shops.</p>
-<p><strong>$179</strong></p>
-<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
+<button class="sparkle-btn" onclick="addToCart()">Add to Cart</button>
 </div>
 </div>
 <button class="arrow-btn" onclick="moveSlide(1)">&#10095;</button>
+</div>
+</section>
+
+<section class="offers">
+<div class="offer-card">
+<h3>Free GitHub Hosting</h3>
+<p>We host your site on professional developer servers for $0 monthly fees. Fast, secure, and permanent.</p>
+</div>
+<div class="offer-card">
+<h3>SEO Marketing</h3>
+<p>Targeted wording and context to ensure Nassau customers find your business first on Google.</p>
+</div>
+<div class="offer-card">
+<h3>Full Management</h3>
+<p>Expert management for Shopify, Wix, and WordPress. We design it, we maintain it, you grow it.</p>
 </div>
 </section>
 
@@ -298,10 +229,6 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 <h4>Can I update my own products?</h4>
 <p>Absolutely. Our client portal allows you to change prices, stock levels, and product descriptions instantly.</p>
 </div>
-<div class="faq-item">
-<h4>Is my data secure?</h4>
-<p>We use end-to-end encryption for all client portal transactions and 256-bit SSL security.</p>
-</div>
 </section>
 
 <footer>
@@ -310,89 +237,72 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 </footer>
 
 <script>
-// --- CHOICE 2: THE "FIRE" BAHAMAS POINT CLOUD ---
-const canvas = document.getElementById('network-canvas');
+// --- CHOICE 2: BAHAMAS SILHOUETTE ---
+const canvas = document.getElementById('bahamas-network');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let points = [];
-const islandLayout = [
-{x: 0.85, y: 0.20, r: 40}, // Grand Bahama
-{x: 0.80, y: 0.30, r: 50}, // Abaco
-{x: 0.60, y: 0.55, r: 60}, // Andros
-{x: 0.72, y: 0.52, r: 15}, // Nassau
-{x: 0.78, y: 0.60, r: 40}, // Eleuthera
-{x: 0.82, y: 0.75, r: 45}, // Exumas
+let particles = [];
+const islands = [
+{x: 0.70, y: 0.20, r: 40}, {x: 0.82, y: 0.25, r: 50},
+{x: 0.65, y: 0.55, r: 70}, {x: 0.76, y: 0.50, r: 15},
+{x: 0.83, y: 0.52, r: 40}, {x: 0.80, y: 0.72, r: 50},
+{x: 0.90, y: 0.85, r: 35}
 ];
 
-class Point {
-constructor(ix, iy, ir) {
-this.x = (ix * canvas.width) + (Math.random() - 0.5) * ir * 2;
-this.y = (iy * canvas.height) + (Math.random() - 0.5) * ir * 2;
-this.vx = (Math.random() - 0.5) * 0.3;
-this.vy = (Math.random() - 0.5) * 0.3;
+class Particle {
+constructor(island) {
+this.x = (island.x * canvas.width) + (Math.random() - 0.5) * island.r * 2;
+this.y = (island.y * canvas.height) + (Math.random() - 0.5) * island.r * 2;
+this.vx = (Math.random() - 0.5) * 0.4;
+this.vy = (Math.random() - 0.5) * 0.4;
 }
+update() { this.x += this.vx; this.y += this.vy; }
 draw() {
 ctx.fillStyle = '#00f2ff';
-ctx.beginPath();
-ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
-ctx.fill();
-}
-update() {
-this.x += this.vx;
-this.y += this.vy;
+ctx.shadowBlur = 8;
+ctx.shadowColor = '#00f2ff';
+ctx.beginPath(); ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2); ctx.fill();
 }
 }
 
 function init() {
-points = [];
-islandLayout.forEach(island => {
-for(let i=0; i<35; i++) points.push(new Point(island.x, island.y, island.r));
-});
+particles = [];
+islands.forEach(isl => { for(let i=0; i<35; i++) particles.push(new Particle(isl)); });
 }
 
 function animate() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
-points.forEach(p => { p.update(); p.draw(); });
-
-for(let i=0; i<points.length; i++) {
-for(let j=i; j<points.length; j++) {
-let dist = Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y);
-if(dist < 90) {
-ctx.strokeStyle = `rgba(0, 242, 255, ${0.15 * (1 - dist/90)})`;
-ctx.lineWidth = 0.5;
-ctx.beginPath();
-ctx.moveTo(points[i].x, points[i].y);
-ctx.lineTo(points[j].x, points[j].y);
-ctx.stroke();
+particles.forEach(p => { p.update(); p.draw(); });
+for(let i=0; i<particles.length; i++) {
+for(let j=i; j<particles.length; j++) {
+let d = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+if(d < 70) {
+ctx.strokeStyle = `rgba(0, 242, 255, ${0.15 * (1 - d/70)})`;
+ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
+ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
 }
 }
 }
 requestAnimationFrame(animate);
 }
+init(); animate();
 
-init();
-animate();
-
-window.addEventListener('resize', () => {
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-init();
-});
-
-// Carousel Logic
+// --- YOUR ORIGINAL LOGIC ---
 function moveSlide(direction) {
 const container = document.getElementById('carousel');
 container.scrollBy({ left: direction * 340, behavior: 'smooth' });
 }
-
-// Cart Logic
 let count = 0;
 function addToCart() {
 count++;
 document.getElementById('cart-count').innerText = count;
+alert("Template added to your Nassau cart!");
 }
+</script>
+</body>
+</html>
 </script>
 </body>
 </html>
