@@ -25,8 +25,8 @@ scroll-behavior: smooth;
 overflow-x: hidden;
 }
 
-/* --- STARRY NETWORK BACKGROUND --- */
-#hero-canvas {
+/* THE CHOICE 2 BACKGROUND CANVAS */
+#network-canvas {
 position: fixed;
 top: 0;
 left: 0;
@@ -92,23 +92,23 @@ transform: scale(1.05);
 100% { box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px #fff; }
 }
 
-/* Hero Section */
+/* Hero Section - Aligned Left like Screenshot */
 .hero {
 height: 90vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
-align-items: center;
-text-align: center;
+align-items: flex-start;
+padding-left: 10%;
 padding-top: 80px;
 }
 
-.hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; }
+.hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; text-align: left; line-height: 1.1; }
 .hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 30px; }
 
-/* WHAT WE OFFER - ICON GRID */
-.offer-section { padding: 60px 10%; text-align: center; }
-.offer-header { text-align: left; font-size: 0.9rem; color: var(--accent-cyan); letter-spacing: 3px; margin-bottom: 40px; }
+/* WHAT WE OFFER - ICON GRID FROM SCREENSHOT */
+.offer-section { padding: 60px 10%; }
+.offer-header { text-align: left; font-size: 0.9rem; color: var(--accent-cyan); letter-spacing: 3px; margin-bottom: 40px; font-weight: bold; }
 .offer-grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -119,6 +119,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 gap: 15px;
+text-align: center;
 }
 .icon-circle {
 width: 70px;
@@ -128,16 +129,16 @@ border-radius: 50%;
 display: flex;
 justify-content: center;
 align-items: center;
-font-size: 1.5rem;
+font-size: 1.8rem;
 background: var(--glass);
-box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
 color: var(--accent-cyan);
 }
-.offer-item span { font-size: 0.75rem; letter-spacing: 1px; font-weight: bold; }
+.offer-item span { font-size: 0.7rem; letter-spacing: 1px; font-weight: bold; text-transform: uppercase; }
 
 /* Carousel */
-.template-section { padding: 80px 5%; text-align: center; }
-.template-section h2 { text-align: left; margin-left: 5%; }
+.template-section { padding: 80px 5%; }
+.template-section h2 { text-align: left; margin-left: 5%; text-transform: uppercase; font-size: 1.5rem; }
 .template-section p.sub { text-align: left; margin-left: 5%; color: var(--text-secondary); margin-bottom: 30px; }
 
 .carousel-wrapper { position: relative; display: flex; align-items: center; max-width: 1200px; margin: 0 auto; }
@@ -190,7 +191,7 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 </head>
 <body>
 
-<canvas id="hero-canvas"></canvas>
+<canvas id="network-canvas"></canvas>
 
 <nav>
 <div class="logo">APEX SERVICES</div>
@@ -210,11 +211,11 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 </nav>
 
 <section class="hero" id="home">
-<h1>Elevating Bahamian Businesses Online</h1>
+<h1>Elevating Bahamian <br>Businesses Online</h1>
 <p>Custom Designs. Free Hosting. Local Expertise.</p>
 <div style="display: flex; gap: 20px;">
 <button class="sparkle-btn">View Pricing</button>
-<button class="sparkle-btn" style="background: transparent; border: 1px solid white;">Client Login</button>
+<button class="sparkle-btn" style="background: transparent; border: 1px solid white; box-shadow: none;">Client Login</button>
 </div>
 </section>
 
@@ -240,6 +241,10 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 <div class="offer-item">
 <div class="icon-circle">🛍️</div>
 <span>SHOP MANAGEMENT</span>
+</div>
+<div class="offer-item">
+<div class="icon-circle">🛡️</div>
+<span>PRIORITY SUPPORT</span>
 </div>
 </div>
 </section>
@@ -271,6 +276,13 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 <p><strong>$249</strong></p>
 <button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
 </div>
+<div class="template-card">
+<div class="temp-img"></div>
+<h3>Harbour Side</h3>
+<p>Minimalist design for boutiques and shops.</p>
+<p><strong>$179</strong></p>
+<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
+</div>
 </div>
 <button class="arrow-btn" onclick="moveSlide(1)">&#10095;</button>
 </div>
@@ -286,6 +298,10 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 <h4>Can I update my own products?</h4>
 <p>Absolutely. Our client portal allows you to change prices, stock levels, and product descriptions instantly.</p>
 </div>
+<div class="faq-item">
+<h4>Is my data secure?</h4>
+<p>We use end-to-end encryption for all client portal transactions and 256-bit SSL security.</p>
+</div>
 </section>
 
 <footer>
@@ -294,66 +310,68 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 </footer>
 
 <script>
-// --- STAR NETWORK ANIMATION ---
-const canvas = document.getElementById('hero-canvas');
+// --- CHOICE 2: THE "FIRE" BAHAMAS POINT CLOUD ---
+const canvas = document.getElementById('network-canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let particles = [];
-class Particle {
-constructor() {
-this.x = Math.random() * canvas.width;
-this.y = Math.random() * canvas.height;
-this.size = Math.random() * 1.5;
-this.speedX = Math.random() * 0.4 - 0.2;
-this.speedY = Math.random() * 0.4 - 0.2;
-}
-update() {
-this.x += this.speedX;
-this.y += this.speedY;
-if (this.x > canvas.width) this.x = 0;
-if (this.x < 0) this.x = canvas.width;
-if (this.y > canvas.height) this.y = 0;
-if (this.y < 0) this.y = canvas.height;
+let points = [];
+const islandLayout = [
+{x: 0.85, y: 0.20, r: 40}, // Grand Bahama
+{x: 0.80, y: 0.30, r: 50}, // Abaco
+{x: 0.60, y: 0.55, r: 60}, // Andros
+{x: 0.72, y: 0.52, r: 15}, // Nassau
+{x: 0.78, y: 0.60, r: 40}, // Eleuthera
+{x: 0.82, y: 0.75, r: 45}, // Exumas
+];
+
+class Point {
+constructor(ix, iy, ir) {
+this.x = (ix * canvas.width) + (Math.random() - 0.5) * ir * 2;
+this.y = (iy * canvas.height) + (Math.random() - 0.5) * ir * 2;
+this.vx = (Math.random() - 0.5) * 0.3;
+this.vy = (Math.random() - 0.5) * 0.3;
 }
 draw() {
 ctx.fillStyle = '#00f2ff';
 ctx.beginPath();
-ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
 ctx.fill();
+}
+update() {
+this.x += this.vx;
+this.y += this.vy;
 }
 }
 
 function init() {
-particles = [];
-for (let i = 0; i < 100; i++) particles.push(new Particle());
+points = [];
+islandLayout.forEach(island => {
+for(let i=0; i<35; i++) points.push(new Point(island.x, island.y, island.r));
+});
 }
 
 function animate() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
-particles.forEach(p => {
-p.update();
-p.draw();
-});
-// Draw connecting lines
-for (let i = 0; i < particles.length; i++) {
-for (let j = i; j < particles.length; j++) {
-let dx = particles[i].x - particles[j].x;
-let dy = particles[i].y - particles[j].y;
-let distance = Math.sqrt(dx * dx + dy * dy);
-if (distance < 100) {
-ctx.strokeStyle = 'rgba(0, 242, 255, 0.1)';
-ctx.lineWidth = 1;
+points.forEach(p => { p.update(); p.draw(); });
+
+for(let i=0; i<points.length; i++) {
+for(let j=i; j<points.length; j++) {
+let dist = Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y);
+if(dist < 90) {
+ctx.strokeStyle = `rgba(0, 242, 255, ${0.15 * (1 - dist/90)})`;
+ctx.lineWidth = 0.5;
 ctx.beginPath();
-ctx.moveTo(particles[i].x, particles[i].y);
-ctx.lineTo(particles[j].x, particles[j].y);
+ctx.moveTo(points[i].x, points[i].y);
+ctx.lineTo(points[j].x, points[j].y);
 ctx.stroke();
 }
 }
 }
 requestAnimationFrame(animate);
 }
+
 init();
 animate();
 
@@ -378,4 +396,5 @@ document.getElementById('cart-count').innerText = count;
 </script>
 </body>
 </html>
+
 
