@@ -294,7 +294,12 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 </footer>
 
 <script>
-// --- NEW BAHAMAS NETWORK ---
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
 const islands = [
 {x: 0.72, y: 0.18, r: 55}, // Grand Bahama
 {x: 0.85, y: 0.22, r: 50}, // Abaco
@@ -348,6 +353,11 @@ ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
 }
 requestAnimationFrame(animate);
 }
+
+// Start the engine
+init();
+animate();
+
 window.addEventListener('resize', () => {
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
