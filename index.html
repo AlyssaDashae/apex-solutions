@@ -1,34 +1,241 @@
-/* 🌌 SPACE BACKGROUND */
-.space-bg {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Services | Premium Web Design & Free Hosting Nassau</title>
+<meta name="description" content="Nassau's premier web design agency. We offer free GitHub hosting, SEO marketing, and custom management for Shopify, Wix, and WordPress.">
+
+<style>
+/* --- CSS STYLING --- */
+:root {
+--bg-dark: #050a10;
+--accent-cyan: #00f2ff;
+--glass: rgba(255, 255, 255, 0.05);
+--text-main: #ffffff;
+}
+
+body {
+margin: 0;
+font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+background-color: var(--bg-dark);
+color: var(--text-main);
+scroll-behavior: smooth;
+}
+
+/* Navigation */
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px 5%;
+background: rgba(5, 10, 16, 0.95);
 position: fixed;
+width: 90%;
 top: 0;
-left: 0;
-width: 100%;
-height: 200%;
-background:
-radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 40%),
-radial-gradient(circle at 80% 30%, rgba(255,255,255,0.08), transparent 45%),
-radial-gradient(circle at 50% 80%, rgba(255,255,255,0.1), transparent 50%),
-linear-gradient(#020111, #000000);
-z-index: -3;
+z-index: 1000;
+border-bottom: 1px solid rgba(0, 242, 255, 0.1);
 }
 
-/* ✨ STARS */
-.stars-bg {
-position: fixed;
-width: 100%;
-height: 200%;
-background-image:
-radial-gradient(1px 1px at 20px 30px, white, transparent),
-radial-gradient(1px 1px at 80px 90px, white, transparent),
-radial-gradient(1px 1px at 150px 200px, white, transparent),
-radial-gradient(1px 1px at 220px 150px, white, transparent);
-background-size: 250px 250px;
-animation: twinkle 6s infinite alternate;
-z-index: -2;
+.logo { font-weight: bold; font-size: 1.5rem; letter-spacing: 2px; color: var(--accent-cyan); }
+
+.nav-links { display: flex; list-style: none; align-items: center; }
+.nav-links li { margin-left: 30px; }
+.nav-links a { text-decoration: none; color: white; transition: 0.3s; font-size: 0.9rem; }
+.nav-links a:hover { color: var(--accent-cyan); }
+
+/* Cart Icon */
+.cart-wrapper { position: relative; cursor: pointer; display: flex; align-items: center; }
+.cart-icon { width: 24px; height: 24px; stroke: var(--accent-cyan); fill: none; stroke-width: 2; }
+#cart-count {
+position: absolute; top: -10px; right: -10px;
+background: #ff0055; color: white; border-radius: 50%;
+padding: 2px 6px; font-size: 10px; font-weight: bold;
 }
 
-@keyframes twinkle {
-from { opacity: 0.6; }
-to { opacity: 1; }
+/* Sparkle Button */
+.sparkle-btn {
+background: linear-gradient(90deg, #00c6ff, #0072ff);
+border: none;
+padding: 12px 25px;
+color: white;
+font-weight: bold;
+border-radius: 5px;
+cursor: pointer;
+text-transform: uppercase;
+transition: 0.4s;
+box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
 }
+
+.sparkle-btn:hover {
+animation: sparkle-anim 1.5s infinite;
+transform: scale(1.05);
+}
+
+@keyframes sparkle-anim {
+0% { box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px #fff; }
+50% { box-shadow: 0 0 25px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+100% { box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px #fff; }
+}
+
+/* Hero Section */
+.hero {
+height: 90vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+background: radial-gradient(circle at center, #0a1f33 0%, #050a10 100%);
+padding-top: 80px;
+}
+
+.hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
+.hero p { font-size: 1.2rem; color: #8892b0; margin-bottom: 30px; }
+
+/* Carousel */
+.template-section { padding: 100px 5%; text-align: center; }
+.carousel-wrapper { position: relative; display: flex; align-items: center; max-width: 1200px; margin: 0 auto; }
+
+.carousel-container {
+display: flex;
+overflow-x: hidden;
+scroll-behavior: smooth;
+gap: 20px;
+padding: 20px 0;
+}
+
+.template-card {
+min-width: 320px;
+background: var(--glass);
+border: 1px solid rgba(0, 242, 255, 0.1);
+border-radius: 15px;
+padding: 20px;
+text-align: left;
+}
+
+.temp-img { width: 100%; height: 180px; background: #112240; border-radius: 10px; margin-bottom: 15px; }
+
+.arrow-btn {
+background: var(--glass);
+border: 1px solid var(--accent-cyan);
+color: var(--accent-cyan);
+font-size: 2rem;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+cursor: pointer;
+z-index: 10;
+}
+
+/* Offers */
+.offers { padding: 80px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.offer-card { padding: 30px; border: 1px solid rgba(0, 242, 255, 0.1); background: var(--glass); border-radius: 10px; }
+
+/* FAQ */
+.faq { padding: 80px 5%; background: rgba(0,0,0,0.2); }
+.faq-item { margin-bottom: 25px; border-bottom: 1px solid #112240; padding-bottom: 15px; }
+.faq h4 { color: var(--accent-cyan); margin-bottom: 10px; }
+
+/* Footer */
+footer { padding: 40px; text-align: center; border-top: 1px solid #112240; font-size: 0.9rem; color: #8892b0; }
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">APEX SERVICES</div>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#templates">Templates</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#contact">Contact Us</a></li>
+<li>
+<div class="cart-wrapper">
+<svg class="cart-icon" viewBox="0 0 24 24"><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+<span id="cart-count">0</span>
+</div>
+</li>
+<li><a href="#" class="sparkle-btn" style="margin-left:20px; padding: 8px 15px;">Login</a></li>
+</ul>
+</nav>
+
+<section class="hero" id="home">
+<h1>Nassau’s Digital Apex</h1>
+<p>Expert SEO Marketing & Free Website Hosting for Local Businesses.</p>
+<button class="sparkle-btn">Build Your Future</button>
+</section>
+
+<section id="templates" class="template-section">
+<h2>Premium Templates</h2>
+<div class="carousel-wrapper">
+<button class="arrow-btn" onclick="moveSlide(-1)">&#10094;</button>
+<div class="carousel-container" id="carousel">
+<div class="template-card">
+<div class="temp-img"></div>
+<h3>Island Modern</h3>
+<p>Perfect for real estate or luxury villas.</p>
+<p><strong>$199</strong></p>
+<button class="sparkle-btn" onclick="addToCart()">Add to Cart</button>
+</div>
+<div class="template-card">
+<div class="temp-img"></div>
+<h3>Nassau Biz</h3>
+<p>Clean corporate design for local services.</p>
+<p><strong>$149</strong></p>
+<button class="sparkle-btn" onclick="addToCart()">Add to Cart</button>
+</div>
+</div>
+<button class="arrow-btn" onclick="moveSlide(1)">&#10095;</button>
+</div>
+</section>
+
+<section class="offers">
+<div class="offer-card">
+<h3>Free GitHub Hosting</h3>
+<p>We host your site on professional developer servers for $0 monthly fees. Fast, secure, and permanent.</p>
+</div>
+<div class="offer-card">
+<h3>SEO Marketing</h3>
+<p>Targeted wording and context to ensure Nassau customers find your business first on Google.</p>
+</div>
+<div class="offer-card">
+<h3>Full Management</h3>
+<p>Expert management for Shopify, Wix, and WordPress. We design it, we maintain it, you grow it.</p>
+</div>
+</section>
+
+<section class="faq">
+<h2>FAQ</h2>
+<div class="faq-item">
+<h4>Can I really host for free?</h4>
+<p>Yes. By utilizing GitHub Pages, we eliminate hosting costs while providing world-class security.</p>
+</div>
+<div class="faq-item">
+<h4>Can I update my own products?</h4>
+<p>Absolutely. Our client portal allows you to change prices, stock levels, and product descriptions instantly.</p>
+</div>
+</section>
+
+<footer>
+<p>Location: Nassau, Bahamas</p>
+<p>Website Designed by <strong>Apex Services</strong></p>
+</footer>
+
+<script>
+// Carousel Logic
+function moveSlide(direction) {
+const container = document.getElementById('carousel');
+container.scrollBy({ left: direction * 340, behavior: 'smooth' });
+}
+
+// Cart Logic
+let count = 0;
+function addToCart() {
+count++;
+document.getElementById('cart-count').innerText = count;
+alert("Template added to your Nassau cart!");
+}
+</script>
+</body>
+</html>
