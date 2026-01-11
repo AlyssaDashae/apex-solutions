@@ -8,6 +8,37 @@
 
 <style>
 /* --- CSS STYLING --- */
+  /* Hide the real mouse so we can use our custom one */
+body, a, button {
+cursor: none !important;
+}
+
+/* The Glowing Head of the Cursor */
+#custom-cursor {
+width: 12px;
+height: 12px;
+background: #00f2ff;
+border-radius: 50%;
+position: fixed;
+pointer-events: none;
+z-index: 10000;
+box-shadow: 0 0 15px #00f2ff, 0 0 30px #00f2ff;
+transition: transform 0.1s ease;
+}
+
+/* The Fire/Trail Particles */
+.cursor-trail {
+width: 6px;
+height: 6px;
+background: #00f2ff;
+border-radius: 50%;
+position: fixed;
+pointer-events: none;
+z-index: 9999;
+filter: blur(2px);
+opacity: 0.8;
+}
+ 
 :root {
 --bg-dark: #050a10;
 --accent-cyan: #00f2ff;
@@ -31,22 +62,24 @@ position: fixed;
 top: 0; left: 0;
 width: 100%; height: 100%;
 z-index: -1;
-background: radial-gradient(circle at 50% 50%, #081b33 0%, #050a10 100%);
+/* This adds the dark blue to black gradient */
+background: radial-gradient(circle at 70% 40%, #0a2d4d 0%, #050a10 100%);
 }
 
-/* This is your glowing silhouette layer */
-.bahamas-silhouette {
-position: fixed;
-top: 55%;
-left: 65%;
-transform: translate(-50%, -50%);
-width: 600px; /* Adjust size to fit your screen */
-opacity: 0.6;
-filter: drop-shadow(0 0 20px #00f2ff);
+/* We will use this to create the 'Island' glow without needing an image file */
+.island-glow {
+position: absolute;
+top: 40%;
+left: 70%;
+width: 300px;
+height: 300px;
+background: #00f2ff;
+filter: blur(150px);
+border-radius: 50%;
+opacity: 0.2;
 z-index: -1;
 pointer-events: none;
 }
-
 
 /* Navigation */
 nav {
@@ -201,7 +234,7 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 </style>
 </head>
 <body>
-
+<div id="custom-cursor"></div>
 <canvas id="hero-canvas"></canvas>
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/The_Bahamas_location_map.svg" class="bahamas-silhouette" alt="Bahamas Silhouette">
 
@@ -309,6 +342,17 @@ footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; 
 <script>
 const canvas = document.getElementById('hero-canvas');
 const ctx = canvas.getContext('2d');
+const cursor = document.getElementById('custom-cursor');
+
+let mouse = { x: null, y: null };
+window.addEventListener('mousemove', (e) => {
+mouse.x = e.clientX;
+mouse.y = e.clientY;
+// Move the main cursor head
+cursor.style.left = e.clientX + 'px';
+cursor.style.top = e.clientY + 'px';
+createTrail(e.clientX, e.clientY);
+});
 
 function resize() {
 canvas.width = window.innerWidth;
@@ -317,56 +361,84 @@ canvas.height = window.innerHeight;
 window.addEventListener('resize', resize);
 resize();
 
-let particles = [];
+// Fire Trail Logic
+function createTrail(x, y) {
+const trail = document.createElement('div');
+trail.className = 'cursor-trail';
+trail.style.left = x + 'px';
+trail.style.top = y + 'px';
+document.body.appendChild(trail);
 
+// Animate the "flame" out
+setTimeout(() => {
+trail.style.transform = 'scale(0)';
+trail.style.opacity = '0';
+}, 50);
+
+// Remove from DOM
+setTimeout(() => { trail.remove(); }, 500);
+}
+
+let particles = [];
 class Particle {
 constructor() {
 this.x = Math.random() * canvas.width;
 this.y = Math.random() * canvas.height;
-this.size = Math.random() * 1.2;
-this.speedX = Math.random() * 0.4 - 0.2;
-this.speedY = Math.random() * 0.4 - 0.2;
+this.size = Math.random() * 1.5 + 1;
+this.vx = (Math.random() - 0.5) * 0.5;
+this.vy = (Math.random() - 0.5) * 0.5;
 }
 update() {
-this.x += this.speedX;
-this.y += this.speedY;
-if (this.x > canvas.width) this.x = 0;
-if (this.x < 0) this.x = canvas.width;
-if (this.y > canvas.height) this.y = 0;
-if (this.y < 0) this.y = canvas.height;
+this.x += this.vx;
+this.y += this.vy;
+if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
 }
 draw() {
+// Check distance to mouse for "Shine" effect
+let dx = mouse.x - this.x;
+let dy = mouse.y - this.y;
+let dist = Math.sqrt(dx * dx + dy * dy);
+
+// If mouse is close, make star bigger and brighter
+if (dist < 100) {
+ctx.fillStyle = '#ffffff';
+ctx.shadowBlur = 15;
+ctx.shadowColor = '#00f2ff';
+ctx.beginPath();
+ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+} else {
 ctx.fillStyle = '#00f2ff';
+ctx.shadowBlur = 0;
 ctx.beginPath();
 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+}
 ctx.fill();
 }
 }
 
 function init() {
 particles = [];
-for (let i = 0; i < 100; i++) {
-particles.push(new Particle());
-}
+for (let i = 0; i < 100; i++) particles.push(new Particle());
 }
 
 function animate() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-particles.forEach(p => {
-p.update();
-p.draw();
-});
+particles.forEach(p => { p.update(); p.draw(); });
 
 for (let i = 0; i < particles.length; i++) {
-for (let j = i; j < particles.length; j++) {
+for (let j = i + 1; j < particles.length; j++) {
 let dx = particles[i].x - particles[j].x;
 let dy = particles[i].y - particles[j].y;
-let distance = Math.sqrt(dx * dx + dy * dy);
+let dist = Math.sqrt(dx * dx + dy * dy);
 
-if (distance < 150) {
-ctx.strokeStyle = `rgba(0, 242, 255, ${0.1 * (1 - distance / 150)})`;
-ctx.lineWidth = 0.8;
+if (dist < 150) {
+// Lines also glow brighter near the mouse
+let mouseDist = Math.sqrt(Math.pow(mouse.x - particles[i].x, 2) + Math.pow(mouse.y - particles[i].y, 2));
+let opacity = mouseDist < 150 ? 0.4 : 0.15;
+
+ctx.strokeStyle = `rgba(0, 242, 255, ${opacity * (1 - dist / 150)})`;
+ctx.lineWidth = mouseDist < 150 ? 1 : 0.5;
 ctx.beginPath();
 ctx.moveTo(particles[i].x, particles[i].y);
 ctx.lineTo(particles[j].x, particles[j].y);
@@ -380,6 +452,7 @@ requestAnimationFrame(animate);
 init();
 animate();
 
+// Keeping your original logic
 function moveSlide(direction) {
 const container = document.getElementById('carousel');
 container.scrollBy({ left: direction * 340, behavior: 'smooth' });
