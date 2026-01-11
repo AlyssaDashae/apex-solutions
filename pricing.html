@@ -3,292 +3,465 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pricing | Apex Services</title>
+<title>Apex Services | Premium Web Design & Free Hosting Nassau</title>
+<meta name="description" content="Nassau's premier web design agency. We offer free GitHub hosting, SEO marketing, and custom management for Shopify, Wix, and WordPress.">
 
 <style>
-:root {
---bg: #fdfcf7;
---dark: #2c2c2c;
---sage: #a3b18a;
---gold: linear-gradient(120deg,#c9a23f,#fff1a8,#c9a23f);
+/* --- CSS STYLING --- */
+  /* Hide the real mouse so we can use our custom one */
+body, a, button {
+cursor: none !important;
 }
 
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+/* The Glowing Head of the Cursor */
+#custom-cursor {
+width: 12px;
+height: 12px;
+background: #00f2ff;
+border-radius: 50%;
+position: fixed;
+pointer-events: none;
+z-index: 10000;
+box-shadow: 0 0 15px #00f2ff, 0 0 30px #00f2ff;
+transition: transform 0.1s ease;
+}
+
+/* The Fire/Trail Particles */
+.cursor-trail {
+width: 6px;
+height: 6px;
+background: #00f2ff;
+border-radius: 50%;
+position: fixed;
+pointer-events: none;
+z-index: 9999;
+filter: blur(2px);
+opacity: 0.8;
+}
+ 
+:root {
+--bg-dark: #050a10;
+--accent-cyan: #00f2ff;
+--glass: rgba(0, 242, 255, 0.05);
+--text-main: #ffffff;
+--text-secondary: #8892b0;
 }
 
 body {
-font-family: Helvetica, Arial, sans-serif;
-background: var(--bg);
-color: var(--dark);
-line-height: 1.6;
+margin: 0;
+font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+background-color: var(--bg-dark);
+color: var(--text-main);
+scroll-behavior: smooth;
+overflow-x: hidden;
 }
 
-/* NAVIGATION */
+/* --- THE BAHAMAS NETWORK BACKGROUND --- */
+#hero-canvas {
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
+z-index: -1;
+/* This adds the dark blue to black gradient */
+background: radial-gradient(circle at 70% 40%, #0a2d4d 0%, #050a10 100%);
+}
+
+/* We will use this to create the 'Island' glow without needing an image file */
+.island-glow {
+position: absolute;
+top: 40%;
+left: 70%;
+width: 300px;
+height: 300px;
+background: #00f2ff;
+filter: blur(150px);
+border-radius: 50%;
+opacity: 0.2;
+z-index: -1;
+pointer-events: none;
+}
+
+/* Navigation */
 nav {
 display: flex;
 justify-content: space-between;
 align-items: center;
-padding: 22px 60px;
-background: var(--bg);
-box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-position: sticky;
+padding: 20px 5%;
+background: rgba(5, 10, 16, 0.8);
+backdrop-filter: blur(10px);
+position: fixed;
+width: 90%;
 top: 0;
-z-index: 10;
+z-index: 1000;
+border-bottom: 1px solid rgba(0, 242, 255, 0.1);
 }
 
-.logo {
-font-size: 36px;
+.logo { font-weight: bold; font-size: 1.5rem; letter-spacing: 2px; color: var(--accent-cyan); text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
+
+.nav-links { display: flex; list-style: none; align-items: center; margin: 0; }
+.nav-links li { margin-left: 30px; }
+.nav-links a { text-decoration: none; color: white; transition: 0.3s; font-size: 0.9rem; text-transform: uppercase; }
+.nav-links a:hover { color: var(--accent-cyan); }
+
+/* Cart Icon */
+.cart-wrapper { position: relative; cursor: pointer; display: flex; align-items: center; }
+.cart-icon { width: 24px; height: 24px; stroke: var(--accent-cyan); fill: none; stroke-width: 2; filter: drop-shadow(0 0 5px var(--accent-cyan)); }
+#cart-count {
+position: absolute; top: -10px; right: -10px;
+background: #ff0055; color: white; border-radius: 50%;
+padding: 2px 6px; font-size: 10px; font-weight: bold;
+}
+
+/* Sparkle Button */
+.sparkle-btn {
+background: linear-gradient(90deg, #00c6ff, #0072ff);
+border: none;
+padding: 12px 25px;
+color: white;
 font-weight: bold;
+border-radius: 5px;
+cursor: pointer;
+text-transform: uppercase;
+transition: 0.4s;
+box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
 }
 
-nav ul {
-list-style: none;
-display: flex;
-gap: 36px;
+.sparkle-btn:hover {
+animation: sparkle-anim 1.5s infinite;
+transform: scale(1.05);
 }
 
-nav a {
-font-size: 18px;
-font-weight: 600;
-text-decoration: none;
-background: var(--gold);
-background-size: 300% 300%;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-animation: sparkle 4s linear infinite;
+@keyframes sparkle-anim {
+0% { box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px #fff; }
+50% { box-shadow: 0 0 25px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+100% { box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px #fff; }
 }
 
-@keyframes sparkle {
-0% { background-position: 0% }
-100% { background-position: 300% }
-}
-
-/* HERO */
+/* Hero Section */
 .hero {
+height: 90vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 text-align: center;
-padding: 100px 20px 70px;
+padding-top: 80px;
 }
 
-.hero h1 {
-font-size: 52px;
-margin-bottom: 16px;
-}
+.hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; }
+.hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 30px; }
 
-.hero span {
-background: var(--gold);
-background-size: 300% 300%;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-animation: sparkle 4s linear infinite;
-}
-
-.hero p {
-font-size: 18px;
-color: #555;
-max-width: 720px;
-margin: auto;
-}
-
-/* PRICING */
-.pricing {
-max-width: 1100px;
-margin: 70px auto;
-padding: 0 20px;
-}
-
-.pricing h2 {
-font-size: 38px;
-text-align: center;
-margin-bottom: 40px;
-}
-
-.price-grid {
+/* WHAT WE OFFER - ICON GRID */
+.offer-section { padding: 60px 10%; text-align: center; }
+.offer-header { text-align: left; font-size: 0.9rem; color: var(--accent-cyan); letter-spacing: 3px; margin-bottom: 40px; }
+.offer-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-gap: 30px;
+grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+gap: 20px;
+}
+.offer-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 15px;
+}
+.icon-circle {
+width: 70px;
+height: 70px;
+border: 1px solid var(--accent-cyan);
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 1.5rem;
+background: var(--glass);
+box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+color: var(--accent-cyan);
+}
+.offer-item span { font-size: 0.75rem; letter-spacing: 1px; font-weight: bold; }
+
+/* Carousel */
+.template-section { padding: 80px 5%; text-align: center; }
+.template-section h2 { text-align: left; margin-left: 5%; }
+.template-section p.sub { text-align: left; margin-left: 5%; color: var(--text-secondary); margin-bottom: 30px; }
+
+.carousel-wrapper { position: relative; display: flex; align-items: center; max-width: 1200px; margin: 0 auto; }
+
+.carousel-container {
+display: flex;
+overflow-x: hidden;
+scroll-behavior: smooth;
+gap: 20px;
+padding: 20px 0;
 }
 
-.price-card {
-background: white;
-padding: 32px;
-border-radius: 16px;
-box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-text-align: center;
+.template-card {
+min-width: 320px;
+background: var(--glass);
+border: 1px solid rgba(0, 242, 255, 0.1);
+border-radius: 10px;
+padding: 20px;
+text-align: left;
+backdrop-filter: blur(5px);
 }
 
-.price-card h3 {
-font-size: 24px;
-margin-bottom: 10px;
-}
+.temp-img { width: 100%; height: 180px; background: #112240; border-radius: 5px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
 
-.price {
-font-size: 42px;
-font-weight: bold;
-margin: 15px 0;
-background: var(--gold);
-background-size: 300% 300%;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-animation: sparkle 4s linear infinite;
+.arrow-btn {
+background: rgba(0, 242, 255, 0.1);
+border: 1px solid var(--accent-cyan);
+color: var(--accent-cyan);
+font-size: 1.5rem;
+width: 45px;
+height: 45px;
+border-radius: 50%;
+cursor: pointer;
+z-index: 10;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: 0.3s;
 }
-
-.price-card p {
-font-size: 16px;
-color: #555;
-margin-bottom: 16px;
-}
-
-.price-card ul {
-list-style: none;
-font-size: 15px;
-color: #555;
-}
-
-.price-card ul li {
-margin-bottom: 8px;
-}
+.arrow-btn:hover { background: var(--accent-cyan); color: black; box-shadow: 0 0 20px var(--accent-cyan); }
 
 /* FAQ */
-.faq {
-max-width: 900px;
-margin: 90px auto;
-padding: 0 20px;
-}
+.faq { padding: 80px 10%; background: rgba(0,0,0,0.3); }
+.faq-item { margin-bottom: 25px; border-bottom: 1px solid #112240; padding-bottom: 15px; }
+.faq h4 { color: var(--accent-cyan); margin-bottom: 10px; }
 
-.faq h2 {
-font-size: 38px;
-text-align: center;
-margin-bottom: 40px;
-}
-
-.faq-item {
-margin-bottom: 20px;
-}
-
-.faq-item h3 {
-font-size: 22px;
-padding: 16px;
-background: #f0f0ea;
-border-radius: 10px;
-cursor: pointer;
-}
-
-.faq-item p {
-display: none;
-padding: 14px 16px;
-background: white;
-border-left: 4px solid var(--sage);
-}
-
-/* FOOTER */
-footer {
-background: var(--dark);
-color: var(--bg);
-text-align: center;
-padding: 34px 20px;
-margin-top: 80px;
-}
-
-footer p {
-font-size: 15px;
-}
+/* Footer */
+footer { padding: 60px 40px; text-align: center; border-top: 1px solid #112240; font-size: 0.9rem; color: var(--text-secondary); }
 </style>
 </head>
-
 <body>
+<div id="custom-cursor"></div>
+<canvas id="hero-canvas"></canvas>
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/The_Bahamas_location_map.svg" class="bahamas-silhouette" alt="Bahamas Silhouette">
 
 <nav>
-<div class="logo">Apex Services</div>
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="pricing.html">Pricing</a></li>
-<li><a href="contact.html">Contact Us</a></li>
+<div class="logo">APEX SERVICES</div>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#templates">Templates</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#contact">Contact Us</a></li>
+<li>
+<div class="cart-wrapper">
+<svg class="cart-icon" viewBox="0 0 24 24"><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+<span id="cart-count">0</span>
+</div>
+</li>
+<li><a href="#" class="sparkle-btn" style="margin-left:20px; padding: 8px 15px;">Client Portal</a></li>
 </ul>
 </nav>
 
-<section class="hero">
-<h1>Website Pricing<br><span>For Bahamas Businesses</span></h1>
-<p class="subtitle">
-Transparent pricing for professional website design, SEO,
-and website management services in The Bahamas.
-</p>
+<section class="hero" id="home">
+<h1>Elevating Bahamian Businesses Online</h1>
+<p>Custom Designs. Free Hosting. Local Expertise.</p>
+<div style="display: flex; gap: 20px;">
+<button class="sparkle-btn">View Pricing</button>
+<button class="sparkle-btn" style="background: transparent; border: 1px solid white;">Client Login</button>
+</div>
 </section>
 
-<section class="pricing">
-<h2>Website Packages</h2>
-
-<div class="price-grid">
-<div class="price-card">
-<h3>Starter</h3>
-<div class="price">$100+</div>
-<p>Perfect for small businesses & personal brands</p>
-<ul>
-<li>1–3 pages</li>
-<li>Up to 5 prodocts
-<li>Mobile responsive</li> 
-<li>Basic SEO</li>
-</ul>
+<section class="offer-section">
+<div class="offer-header">WHAT WE OFFER</div>
+<div class="offer-grid">
+<div class="offer-item">
+<div class="icon-circle">🌐</div>
+<span>FREE GITHUB HOSTING</span>
 </div>
-
-<div class="price-card">
-<h3>Business</h3>
-<div class="price">$999+</div>
-<p>Ideal for growing businesses</p>
-<ul>
-<li>Up to 7 pages</li>
-<li>Template or custom design</li>
-<li>Contact forms</li>
-</ul>
+<div class="offer-item">
+<div class="icon-circle">🎨</div>
+<span>TEMPLATE DESIGN</span>
 </div>
-
-<div class="price-card">
-<h3>E-commerce</h3>
-<div class="price">$1,499+</div>
-<p>Sell products online with ease</p>
-<ul>
-<li>Shopify / Wix / WordPress</li>
-<li>Inventory setup</li>
-<li>Payment integration</li>
-</ul>
+<div class="offer-item">
+<div class="icon-circle">📈</div>
+<span>SEO MARKETING</span>
 </div>
+<div class="offer-item">
+<div class="icon-circle">⚙️</div>
+<span>SITE MANAGEMENT</span>
+</div>
+<div class="offer-item">
+<div class="icon-circle">🛍️</div>
+<span>SHOP MANAGEMENT</span>
+</div>
+</div>
+</section>
+
+<section id="templates" class="template-section">
+<h2>SELECT YOUR STARTING POINT</h2>
+<p class="sub">Premium templates designed for Bahamian excellence.</p>
+<div class="carousel-wrapper">
+<button class="arrow-btn" onclick="moveSlide(-1)">&#10094;</button>
+<div class="carousel-container" id="carousel">
+<div class="template-card">
+<div class="temp-img"></div>
+<h3>Island Modern</h3>
+<p>Perfect for real estate or luxury villas.</p>
+<p><strong>$199</strong></p>
+<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
+</div>
+<div class="template-card">
+<div class="temp-img"></div>
+<h3>Nassau Biz</h3>
+<p>Clean corporate design for local services.</p>
+<p><strong>$149</strong></p>
+<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
+</div>
+<div class="template-card">
+<div class="temp-img"></div>
+<h3>Paradise Realty</h3>
+<p>Showcase properties with high-impact visuals.</p>
+<p><strong>$249</strong></p>
+<button class="sparkle-btn" onclick="addToCart()" style="width: 100%;">Add to Cart</button>
+</div>
+</div>
+<button class="arrow-btn" onclick="moveSlide(1)">&#10095;</button>
 </div>
 </section>
 
 <section class="faq">
-<h2>Pricing FAQs</h2>
-
+<h2>FAQ</h2>
 <div class="faq-item">
-<h3>Why do prices start at a minimum?</h3>
-<p>Every website is unique. Final pricing depends on features, pages, and integrations.</p>
+<h4>Can I really host for free?</h4>
+<p>Yes. By utilizing GitHub Pages, we eliminate hosting costs while providing world-class security.</p>
 </div>
-
 <div class="faq-item">
-<h3>Do you offer payment plans?</h3>
-<p>Yes, payment plans are available for larger projects.</p>
-</div>
-
-<div class="faq-item">
-<h3>Is hosting included?</h3>
-<p>Yes, we offer free hosting options or can work with your preferred platform.</p>
+<h4>Can I update my own products?</h4>
+<p>Absolutely. Our client portal allows you to change prices, stock levels, and product descriptions instantly.</p>
 </div>
 </section>
 
 <footer>
-<p>Nassau, Bahamas</p>
-<p>Website created by Apex Services</p>
+<p>Location: Nassau, Bahamas</p>
+<p>Website Designed by <strong>Apex Services</strong></p>
 </footer>
 
 <script>
-document.querySelectorAll('.faq-item h3').forEach(q => {
-q.onclick = () => {
-const p = q.nextElementSibling;
-p.style.display = p.style.display === 'block' ? 'none' : 'block';
-}
-});
-</script>
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+const cursor = document.getElementById('custom-cursor');
 
+let mouse = { x: null, y: null };
+window.addEventListener('mousemove', (e) => {
+mouse.x = e.clientX;
+mouse.y = e.clientY;
+// Move the main cursor head
+cursor.style.left = e.clientX + 'px';
+cursor.style.top = e.clientY + 'px';
+createTrail(e.clientX, e.clientY);
+});
+
+function resize() {
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+// Fire Trail Logic
+function createTrail(x, y) {
+const trail = document.createElement('div');
+trail.className = 'cursor-trail';
+trail.style.left = x + 'px';
+trail.style.top = y + 'px';
+document.body.appendChild(trail);
+
+// Animate the "flame" out
+setTimeout(() => {
+trail.style.transform = 'scale(0)';
+trail.style.opacity = '0';
+}, 50);
+
+// Remove from DOM
+setTimeout(() => { trail.remove(); }, 500);
+}
+
+let particles = [];
+class Particle {
+constructor() {
+this.x = Math.random() * canvas.width;
+this.y = Math.random() * canvas.height;
+this.size = Math.random() * 1.5 + 1;
+this.vx = (Math.random() - 0.5) * 0.5;
+this.vy = (Math.random() - 0.5) * 0.5;
+}
+update() {
+this.x += this.vx;
+this.y += this.vy;
+if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+}
+draw() {
+// Check distance to mouse for "Shine" effect
+let dx = mouse.x - this.x;
+let dy = mouse.y - this.y;
+let dist = Math.sqrt(dx * dx + dy * dy);
+
+// If mouse is close, make star bigger and brighter
+if (dist < 100) {
+ctx.fillStyle = '#ffffff';
+ctx.shadowBlur = 15;
+ctx.shadowColor = '#00f2ff';
+ctx.beginPath();
+ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+} else {
+ctx.fillStyle = '#00f2ff';
+ctx.shadowBlur = 0;
+ctx.beginPath();
+ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+}
+ctx.fill();
+}
+}
+
+function init() {
+particles = [];
+for (let i = 0; i < 100; i++) particles.push(new Particle());
+}
+
+function animate() {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+particles.forEach(p => { p.update(); p.draw(); });
+
+for (let i = 0; i < particles.length; i++) {
+for (let j = i + 1; j < particles.length; j++) {
+let dx = particles[i].x - particles[j].x;
+let dy = particles[i].y - particles[j].y;
+let dist = Math.sqrt(dx * dx + dy * dy);
+
+if (dist < 150) {
+// Lines also glow brighter near the mouse
+let mouseDist = Math.sqrt(Math.pow(mouse.x - particles[i].x, 2) + Math.pow(mouse.y - particles[i].y, 2));
+let opacity = mouseDist < 150 ? 0.4 : 0.15;
+
+ctx.strokeStyle = `rgba(0, 242, 255, ${opacity * (1 - dist / 150)})`;
+ctx.lineWidth = mouseDist < 150 ? 1 : 0.5;
+ctx.beginPath();
+ctx.moveTo(particles[i].x, particles[i].y);
+ctx.lineTo(particles[j].x, particles[j].y);
+ctx.stroke();
+}
+}
+}
+requestAnimationFrame(animate);
+}
+
+init();
+animate();
+
+// Keeping your original logic
+function moveSlide(direction) {
+const container = document.getElementById('carousel');
+container.scrollBy({ left: direction * 340, behavior: 'smooth' });
+}
+
+let count = 0;
+function addToCart() {
+count++;
+document.getElementById('cart-count').innerText = count;
+}
+</script>
 </body>
-</html>
